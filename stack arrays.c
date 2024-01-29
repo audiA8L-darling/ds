@@ -5,19 +5,15 @@ struct Stack {
  int items[MAX_SIZE];
  int top;
 };
-// Function to initialize the stack
 void initialize(struct Stack* stack) {
  stack->top = -1;
 }
-// Function to check if the stack is empty
 int isEmpty(struct Stack* stack) {
  return stack->top == -1;
 }
-// Function to check if the stack is full
 int isFull(struct Stack* stack) {
  return stack->top == MAX_SIZE - 1;
 }
-// Function to push an element onto the stack
 void push(struct Stack* stack, int value) {
  if (isFull(stack)) {
  printf("Stack is full. Cannot push %d\n", value);
@@ -26,7 +22,6 @@ void push(struct Stack* stack, int value) {
  printf("Pushed %d onto the stack\n", value);
  }
 }
-// Function to pop an element from the stack
 int pop(struct Stack* stack) {
  if (isEmpty(stack)) {
  printf("Stack is empty. Cannot pop.\n");
@@ -37,7 +32,6 @@ int pop(struct Stack* stack) {
  return popped;
  }
 }
-// Function to display the stack
 void display(struct Stack* stack) {
  if (isEmpty(stack)) {
  printf("Stack is empty.\n");
@@ -63,21 +57,17 @@ int main() {
  scanf("%d", &choice);
  switch (choice) {
  case 1:
- // Push
  printf("Enter a value to push: ");
  scanf("%d", &value);
  push(&stack, value);
  break;
  case 2:
- // Pop
  pop(&stack);
  break;
  case 3:
- // Display
  display(&stack);
  break;
  case 4:
- // Exit
  printf("Exiting the program.\n");
  break;
  default:
