@@ -1,11 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-// Define a structure for a circular linked list node
 struct Node {
  int data;
  struct Node* next;
 };
-// Function to create a new node
 struct Node* createNode(int data) {
  struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
  if (newNode == NULL) {
@@ -16,11 +14,10 @@ struct Node* createNode(int data) {
  newNode->next = NULL;
  return newNode;
 }
-// Function to insert a node at the beginning of the circular list
 struct Node* insertAtBeginning(struct Node* head, int data) {
  struct Node* newNode = createNode(data);
  if (head == NULL) {
- newNode->next = newNode; // Create a self-referencing node
+ newNode->next = newNode; 
  return newNode;
  } else {
  struct Node* current = head;
@@ -32,7 +29,6 @@ struct Node* insertAtBeginning(struct Node* head, int data) {
  return newNode;
  }
 }
-// Function to delete a node by value
 struct Node* deleteNode(struct Node* head, int key) {
  if (head == NULL) {
  printf("List is empty\n");
@@ -74,7 +70,6 @@ struct Node* deleteNode(struct Node* head, int key) {
  printf("Key not found in the list\n");
  return head;
 }
-// Function to traverse and print the circular linked list
 void traverse(struct Node* head) {
  if (head == NULL) {
  printf("List is empty\n");
@@ -101,29 +96,24 @@ int main() {
  scanf("%d", &choice);
  switch (choice) {
  case 1:
- // Creation
  printf("Enter data to create a node: ");
  scanf("%d", &data);
  head = insertAtBeginning(head, data);
  break;
  case 2:
- // Insertion at the beginning
  printf("Enter data to insert at the beginning: ");
  scanf("%d", &data);
  head = insertAtBeginning(head, data);
  break;
  case 3:
- // Deletion
  printf("Enter the value to delete: ");
  scanf("%d", &key);
  head = deleteNode(head, key);
  break;
  case 4:
- // Traversal
  traverse(head);
  break;
  case 5:
- // Exit
  printf("Exiting the program.\n");
  break;
  default:
