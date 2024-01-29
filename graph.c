@@ -1,18 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-// Structure for a node in the adjacency list
 struct Node {
  int vertex;
  struct Node* next;
 };
-// Structure for an adjacency list
 struct Graph {
  int numVertices;
  struct Node** adjLists;
  bool* visited;
 };
-// Function to create a new node
 struct Node* createNode(int vertex) {
  struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
  if (newNode == NULL) {
@@ -23,7 +20,6 @@ struct Node* createNode(int vertex) {
  newNode->next = NULL;
  return newNode;
 }
-// Function to create a graph with a given number of vertices
 struct Graph* createGraph(int numVertices) {
  struct Graph* graph = (struct Graph*)malloc(sizeof(struct Graph));
  if (graph == NULL) {
@@ -43,7 +39,6 @@ struct Graph* createGraph(int numVertices) {
  }
  return graph;
 }
-// Function to add an edge to an undirected graph
 void addEdge(struct Graph* graph, int src, int dest) {
  struct Node* newNode = createNode(dest);
  newNode->next = graph->adjLists[src];
@@ -52,7 +47,6 @@ void addEdge(struct Graph* graph, int src, int dest) {
  newNode->next = graph->adjLists[dest];
  graph->adjLists[dest] = newNode;
 }
-// Function to perform Depth-First Search (DFS) traversal
 void DFS(struct Graph* graph, int vertex) {
  graph->visited[vertex] = true;
  printf("%d ", vertex);
@@ -65,7 +59,6 @@ void DFS(struct Graph* graph, int vertex) {
  adjList = adjList->next;
  }
 }
-// Function to perform Breadth-First Search (BFS) traversal
 void BFS(struct Graph* graph, int startVertex) {
  int queue[graph->numVertices];
  int front = 0, rear = 0;
@@ -86,9 +79,8 @@ void BFS(struct Graph* graph, int startVertex) {
  }
 }
 int main() {
- int numVertices = 6; // Change this to the number of vertices in your graph
+ int numVertices = 6;
  struct Graph* graph = createGraph(numVertices);
- // Add edges to the graph
  addEdge(graph, 0, 1);
  addEdge(graph, 0, 2);
  addEdge(graph, 1, 3);
@@ -98,7 +90,6 @@ int main() {
  addEdge(graph, 4, 5);
  printf("DFS Traversal: ");
  DFS(graph, 0);
- // Reset visited flags
  for (int i = 0; i < numVertices; i++) {
  graph->visited[i] = false;
  }
