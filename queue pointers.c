@@ -1,24 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
-// Define a structure for a queue node
 struct QueueNode {
  int data;
  struct QueueNode* next;
 };
-// Define a structure for the queue
 struct Queue {
  struct QueueNode* front;
  struct QueueNode* rear;
 };
-// Function to initialize the queue
 void initialize(struct Queue* queue) {
  queue->front = queue->rear = NULL;
 }
-// Function to check if the queue is empty
 int isEmpty(struct Queue* queue) {
  return (queue->front == NULL);
 }
-// Function to enqueue an element into the queue
 void enqueue(struct Queue* queue, int value) {
  struct QueueNode* newNode = (struct QueueNode*)malloc(sizeof(struct 
 QueueNode));
@@ -36,7 +31,6 @@ QueueNode));
  }
  printf("Enqueued %d into the queue\n", value);
 }
-// Function to dequeue an element from the queue
 int dequeue(struct Queue* queue) {
  if (isEmpty(queue)) {
  printf("Queue is empty. Cannot dequeue.\n");
@@ -52,7 +46,6 @@ int dequeue(struct Queue* queue) {
  printf("Dequeued %d from the queue\n", dequeued);
  return dequeued;
  }
-// Function to display the queue
 void display(struct Queue* queue) {
  if (isEmpty(queue)) {
  printf("Queue is empty.\n");
@@ -80,28 +73,23 @@ int main() {
  scanf("%d", &choice);
  switch (choice) {
  case 1:
- // Enqueue
  printf("Enter a value to enqueue: ");
  scanf("%d", &value);
  enqueue(&queue, value);
  break;
  case 2:
- // Dequeue
  dequeue(&queue);
  break;
  case 3:
- // Display
  display(&queue);
  break;
  case 4:
- // Exit
  printf("Exiting the program.\n");
  break;
  default:
  printf("Invalid choice! Please enter a valid option.\n");
  }
  } while (choice != 4);
- // Free the memory allocated for the queue nodes
  while (!isEmpty(&queue)) {
  dequeue(&queue);
  }
