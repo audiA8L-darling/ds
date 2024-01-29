@@ -2,13 +2,11 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <limits.h>
-// Structure for a binary tree node
 struct TreeNode {
  int data;
  struct TreeNode* left;
  struct TreeNode* right;
 };
-// Function to create a new binary tree node
 struct TreeNode* createNode(int data) {
  struct TreeNode* newNode = (struct TreeNode*)malloc(sizeof(struct TreeNode));
  if (newNode == NULL) {
@@ -19,7 +17,6 @@ struct TreeNode* createNode(int data) {
  newNode->left = newNode->right = NULL;
  return newNode;
 }
-// Function to perform pre-order traversal (recursive)
 void preOrderRecursive(struct TreeNode* root) {
  if (root != NULL) {
  printf("%d ", root->data);
@@ -27,7 +24,6 @@ void preOrderRecursive(struct TreeNode* root) {
  preOrderRecursive(root->right);
  }
 }
-// Function to perform in-order traversal (recursive)
 void inOrderRecursive(struct TreeNode* root) {
  if (root != NULL) {
  inOrderRecursive(root->left);
@@ -35,7 +31,6 @@ void inOrderRecursive(struct TreeNode* root) {
  inOrderRecursive(root->right);
  }
 }
-// Function to perform post-order traversal (recursive)
 void postOrderRecursive(struct TreeNode* root) {
  if (root != NULL) {
  postOrderRecursive(root->left);
@@ -43,16 +38,13 @@ void postOrderRecursive(struct TreeNode* root) {
  printf("%d ", root->data);
  }
 }
-// Structure for a stack node (used for non-recursive traversal)
 struct StackNode {
  struct TreeNode* data;
  struct StackNode* next;
 };
-// Structure for a stack (used for non-recursive traversal)
 struct Stack {
  struct StackNode* top;
 };
-// Function to initialize a stack
 struct Stack* createStack() {
  struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));
  if (stack == NULL) {
@@ -62,11 +54,9 @@ struct Stack* createStack() {
  stack->top = NULL;
  return stack;
 }
-// Function to check if a stack is empty
 bool isEmpty(struct Stack* stack) {
  return (stack->top == NULL);
 }
-// Function to push a tree node onto the stack
 void push(struct Stack* stack, struct TreeNode* node) {
  struct StackNode* newNode = (struct StackNode*)malloc(sizeof(struct StackNode));
  if (newNode == NULL) {
@@ -77,7 +67,6 @@ void push(struct Stack* stack, struct TreeNode* node) {
  newNode->next = stack->top;
  stack->top = newNode;
 }
-// Function to pop a tree node from the stack
 struct TreeNode* pop(struct Stack* stack) {
  if (isEmpty(stack)) {
  printf("Stack is empty\n");
@@ -89,7 +78,6 @@ struct TreeNode* pop(struct Stack* stack) {
  free(temp);
  return popped;
 }
-// Function to perform pre-order traversal (non-recursive)
 void preOrderNonRecursive(struct TreeNode* root) {
  if (root == NULL) {
  return;
@@ -99,7 +87,6 @@ void preOrderNonRecursive(struct TreeNode* root) {
  while (!isEmpty(stack)) {
  struct TreeNode* current = pop(stack);
  printf("%d ", current->data);
- // Push the right child first, so it will be processed after the left child
  if (current->right != NULL) {
  push(stack, current->right);
  }
@@ -108,7 +95,6 @@ void preOrderNonRecursive(struct TreeNode* root) {
  }
  }
 }
-// Function to perform in-order traversal (non-recursive)
 void inOrderNonRecursive(struct TreeNode* root) {
  if (root == NULL) {
  return;
@@ -125,7 +111,6 @@ void inOrderNonRecursive(struct TreeNode* root) {
  current = current->right;
  }
 }
-// Function to perform post-order traversal (non-recursive)
 void postOrderNonRecursive(struct TreeNode* root) {
  if (root == NULL) {
  return;
@@ -149,7 +134,6 @@ void postOrderNonRecursive(struct TreeNode* root) {
  }
 }
 int main() {
- // Create a sample binary tree
  struct TreeNode* root = createNode(1);
  root->left = createNode(2);
  root->right = createNode(3);
